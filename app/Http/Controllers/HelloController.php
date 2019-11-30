@@ -76,10 +76,13 @@ public function remove(Request $request)
   return redirect('/hello');
 }
 
-public function Show(Request $request)
+public function show(Request $request)
 {
-  $id = $request -> id;
-  $items = DB::table('people') -> where('id','<=',$id) ->get();
+  $min = $request ->min;
+  $max = $request ->max;
+  $items = DB::table('people')
+  ->whereRaw('age >= ? and age <= ?',
+  [$min,$max])->get();
   return view('hello.show',['items' => $items]);
 }
 
