@@ -17,3 +17,5 @@ Route::post('hello','HelloController@index');
 
 // Route::get('hello/edit','HelloController@edit');
 // Route::post('hello/edit','HelloController@update');
+
+Route::get('person','HelloController@index');
