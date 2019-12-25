@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Person extends Model
 {
+
+
   public function getData(){
       return $this->id.':'.$this->name.'('.$this->age.')';
     }
@@ -22,11 +24,12 @@ class Person extends Model
     return $query->where('age','<=',$n);
     }
 
-  public function boot(){
-    parent::boot();
 
-  static::addGlobalScope('age',funciton (Builder $builder){
-    $builder->where('age','>',20);
-  });
-}
+
+  public function boot(){
+      parent::boot();
+      static::addGlobalScope('age',function(Builder $builder){
+      $builder->where('age','>',20);
+    });
+  }
 }
